@@ -24,8 +24,8 @@ impl ProtocolDecode<'_> for OkPacket {
             ));
         }
 
-        let affected_rows = buf.get_uint_lenenc();
-        let last_insert_id = buf.get_uint_lenenc();
+        let affected_rows = buf.get_uint_lenenc()?;
+        let last_insert_id = buf.get_uint_lenenc()?;
 
         if buf.remaining() < 4 {
             return Err(err_protocol!(
